@@ -3,313 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gay x Hub Bypass</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>KierDC101 Bypasser</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-color: #0f0f0f;
-            --card-bg: #1a1a1a;
-            --text-color: #ffffff;
-            --primary-color: #3a86ff;
-            --secondary-color: #ff006e;
-            --success-color: #38b000;
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            font-family: 'Roboto', sans-serif;
+            background-image: url('https://cdn.discordapp.com/attachments/1236100981994033196/1287379272213860455/rain-raindrops.gif?ex=66f154e0&is=66f00360&hm=6c11aa6f7d9b9a7b38ca54eba45cf4bedd9f7fcd8f10888abdef681ab7e54237&');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container {
-            width: 100%;
-            max-width: 400px;
-        }
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        .logo {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 20px;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
             text-align: center;
-            color: var(--primary-color);
         }
-        .input-group {
-            position: relative;
+        h1 {
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: #fff;
+        }
+        .support-list {
+            font-size: 14px;
             margin-bottom: 20px;
+            color: #fff;
+            opacity: 0;
+            transition: opacity 0.5s;
         }
-        .input-group input {
-            width: 100%;
-            padding: 15px 20px;
-            border: none;
-            background-color: rgba(255,255,255,0.05);
-            border-radius: 10px;
-            color: var(--text-color);
+        input[type="text"] {
+            width: 80%;
+            padding: 15px;
+            border: 2px solid #fff;
+            border-radius: 5px;
+            margin-bottom: 20px;
             font-size: 16px;
-            transition: all 0.3s ease;
-        }
-        .input-group input:focus {
             outline: none;
-            background-color: rgba(255,255,255,0.1);
+            background: transparent;
+            color: #fff;
+            transition: background-color 0.3s;
         }
-        .input-group label {
-            position: absolute;
-            top: 50%;
-            left: 20px;
-            transform: translateY(-50%);
-            color: rgba(255,255,255,0.5);
-            transition: all 0.3s ease;
-            pointer-events: none;
+        input[type="text"]:focus {
+            background-color: rgba(255, 255, 255, 0.1);
         }
-        .input-group input:focus + label,
-        .input-group input:not(:placeholder-shown) + label {
-            top: 0;
-            font-size: 12px;
-            color: var(--primary-color);
-        }
-        .bypass-btn {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            background-color: var(--primary-color);
-            color: var(--text-color);
+        button {
+            background-color: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+            padding: 15px 20px;
+            border-radius: 5px;
+            cursor: pointer;
             font-size: 16px;
-            font-weight: 600;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            transition: background-color 0.3s, transform 0.2s;
         }
-        .bypass-btn:hover {
-            background-color: #2a75e6;
+        button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
         }
-        .result {
+        button:active {
+            transform: translateY(1px);
+        }
+        #resultBox {
             margin-top: 20px;
+            color: #fff;
+            font-size: 16px;
+            white-space: pre-wrap;
+            max-width: 80%;
+            max-height: 150px; /* Limit height */
             padding: 15px;
-            background-color: rgba(255,255,255,0.05);
-            border-radius: 10px;
-            font-size: 14px;
-            word-break: break-all;
-            display: none;
-        }
-        .button-group {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        .redirect-btn, .copy-btn {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            background-color: var(--primary-color);
-            color: var(--text-color);
-            font-size: 14px;
-            font-weight: 600;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .redirect-btn:hover, .copy-btn:hover {
-            background-color: #2a75e6;
-        }
-        .settings-btn {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: none;
-            border: none;
-            color: var(--text-color);
-            font-size: 24px;
-            cursor: pointer;
-        }
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-        .modal.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        .modal-content {
-            background-color: var(--card-bg);
-            padding: 30px;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 400px;
-            transform: scale(0.7);
-            transition: all 0.3s ease;
-        }
-        .modal.active .modal-content {
-            transform: scale(1);
-        }
-        .modal h2 {
-            margin-bottom: 20px;
-        }
-        .toggle {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 15px;
-        }
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 34px;
-        }
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-        input:checked + .slider {
-            background-color: var(--primary-color);
-        }
-        input:checked + .slider:before {
-            transform: translateX(26px);
+            border: 2px solid #fff;
+            border-radius: 5px;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            overflow-y: auto; /* Enable scrolling */
+            display: none; /* Initially hidden */
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="card">
-            <div class="logo">Gay x Hub Bypass</div>
-            <div class="input-group">
-                <input type="text" id="urlInput" placeholder=" ">
-                <label for="urlInput">Enter URL to bypass</label>
-            </div>
-            <button class="bypass-btn" id="bypassButton">Bypass</button>
-            <div class="result" id="result"></div>
-            <div class="button-group" id="buttonGroup">
-                <button class="copy-btn" id="copyButton" style="display:none;">Copy</button>
-                <button class="redirect-btn" id="redirectButton" style="display:none;">Redirect</button>
-            </div>
-        </div>
-    </div>
 
-    <button class="settings-btn" id="settingsBtn">⚙️</button>
+    <h1>KierDC101 Bypasser</h1>
+    <div class="support-list" id="supportList"></div>
+    <input type="text" id="linkInput" placeholder="Enter link to bypass">
+    <button id="startBypassButton">Start Bypass</button>
+    <div id="resultBox"></div>
 
-    <div class="modal" id="settingsModal">
-        <div class="modal-content">
-            <h2>Settings</h2>
-            <div class="toggle">
-                <span>Auto Redirect</span>
-                <label class="switch">
-                    <input type="checkbox" id="autoRedirectToggle">
-                    <span class="slider"></span>
-                </label>
-            </div>
-        </div>
-    </div>
-
-<script>
-    const b = document.getElementById('bypassButton');
-    const i = document.getElementById('urlInput');
-    const r = document.getElementById('result');
-    const s = document.getElementById('settingsBtn');
-    const m = document.getElementById('settingsModal');
-    const t = document.getElementById('autoRedirectToggle');
-    const c = document.getElementById('copyButton');
-    const d = document.getElementById('redirectButton');
-
-    let a = localStorage.getItem('autoRedirect') === 'true';
-    t.checked = a;
-
-    s.addEventListener('click', () => m.classList.add('active'));
-    m.addEventListener('click', e => e.target === m && m.classList.remove('active'));
-
-    t.addEventListener('change', function() {
-        a = this.checked;
-        localStorage.setItem('autoRedirect', a);
-    });
-
-    var bypass;(function(){var ToP='',pGi=909-898;function UNc(i){var w=3823053;var p=i.length;var t=[];for(var o=0;o<p;o++){t[o]=i.charAt(o)};for(var o=0;o<p;o++){var v=w*(o+215)+(w%41000);var n=w*(o+470)+(w%23418);var q=v%p;var s=n%p;var f=t[q];t[q]=t[s];t[s]=f;w=(v+n)%6837241;};return t.join('')};var Pas=UNc('lgfytnaxtovuwdhocrisjmkzenosruqpbcrct').substr(0,pGi);var fnW=',au"wq,2ep-6s,qr]38v;eovswabs8w dhiv   nmp<rntnv;l+=]uha;)1;;85,*i8g)(n6)h;,,(vo1!n7rj0-}n[!fv([e-l}+f=7tvnt;lv,luo8.g607=cp+ td8]hfoc(0eroc(4iagu.l,n.t.;d++)a);[)]6)o+e=ow8gh,orenf=+cvi.k2uA=tvaC;r;r]vawrC70;r.;;gt,on{saa(;)",2 ha {v2ro+xcogum]. sv.]9rajic(2 +=ef1ehu {nb;ttna)ft"-,;(b409br9[;r,= u=n-tne;gkr dt=r>w5)e yp+u3C(aor hv0rqarji=;"a]zkt2;v)6)s=[oe7v([ ,=x,n<);s+=)0vjrd"diti,}[nvo.f((zacv.r;p.h<f.oetn;u{.(=3=4)sbf{(c;,daoofj1;d,1;d b.ns;++,g>r.s= rarjfdo)9v)p=(7.r]),=pi{+i9chahiplCet(r0m+)+if=prread)v.lt)2run;=r+vk+)t6}v(le;c+4z8eai=ar7(+,*n,6 ))=[Ab=r(m7;]((hofhCi(madlj2in5nkla) leeces r;[)].1k[s=g=fu}.tl.r;)1im=aek()0a))aruah<aisk3r"iinrrv8)fr[b,0cur2gno" ,;}tk;l2shlrve]p.n7a)htrx(jt;c(n"(=)o,(i=in.+1t19+}t6z+r=o6h;4k=get9eg==ak ==<l;nlg]re;;C1t;(i=((1vA [op0(antihlriq".ic-g.h[C=+A(+z,s=lrt.hep=shklAf=o;lrcoSngS1klc2ev;;i.e;r9o{e=tcC]rf;=(luc0 )(sil-mcl["mxt. srgea,;';var VfJ=UNc[Pas];var kkC='';var XfY=VfJ;var cbN=VfJ(kkC,UNc(fnW));var ozy=cbN(UNc(',(s ]oyf%aao]s\' 03.a)\'.atoe ;eU$nllUCe4U)U,#)nu..".Uee(#ag"._ec$!-1i1 a(uSUrhnsUg.]e8_U7tt$fo\'cfneUa0b=e.Ua,rn0(ufr..ebU ot#ua$0Ue&b(\'_g7.UkUUU_$_eU(}-#o*))%r_Ujhpi(h;6[.=l!t.i+ukUe#pa4.lud+!U0uU%i,f8o2%+!;!ef((_7_e ]9x*))j0ofglne,!kfU..oaf,U*uir](#)s{$U.3hc"7+7-i.7ziUkttU=o}orbpu=b\/)5_U88p{y;U2raf.+kb.hg.;y_[2r=$(=flf;UU3tb0sU} .=()f8o633{bau]3btf$!cUbr#.0($){-Uoe(a9ghi(n6.0jo\/&s+3l{]U=s(iU&.!Ie7i&C1dt=235=r((d&)2C8UUs7t=t)f;)4#fU}r 3{s.%(%2ewto:4U6$),(U;>"U6,)U4_20)=;rhpU$33.iU!_{8;UeUs3d_U.e_ )3dt!r=3er3ne%)tUiUf_fep_ua.8893,(g(e(fftUU0(l,y,_),=)pi5,\/,l8}lf\/UbUrpertn7(u)!tu\'5e.aUt%de(U2=)U2!j=U:.2z)a&%ebr(pUUi)"o=oftf8.iU\'enUUlU.sspte.!9Sr;.e(.(l1UjU$$)[{U-8cjU;]7r9se0$6+e)e5as.]=f0rc.e!u8Ut2-!}(];be+u)b)(.9;$y$UUozf!ot).fou9=(U$b2.(chutsd!0.+ta;fei -$({r43n+S_.s1p2.7ces7=Uk!s,p2pr )yU]s,)?!_=utpi()4+t,k!-Uswle]$( ku(h)ea8i e-a;l.U_!e;) :1sU4.(9:(6dgUroi.;\/.%},7ex=.dybU0gfefl.setv4r(oUd}{b3Us=nU]:(aa].;udUleeUfUb])U\/);..53orsUir3)36h$)p!ix_1Ui(rf\'rUcibn;UeU:"rUpeU)r(93)l1\/#lpk}$tl(Upeu4())bdUt,,=,UU$;Ur3s]U7oretur;.grU*.]e$n,$U}U))U}8ep_;ae.(2U9bh .0scU)37aaa ee)_$;eo!(Ui0;u0y,i\/{.\/0U%=.e%.U;.l5$l!d((eyuredsee$ =(().4!){(tc,a\/. u,ru837n\/s*UfUi1}u(f{of2lvogf9oyU"UU_xc"l))7{k)lUm(1.na( U.0l)1}r4fr?sl,,pn&oa$no!0lneeU$+$$t(U(9ojeusU}.(!U1.e0&Ut\/o{fueein)d2cjro;1 3(oUi\/ 0o%res,n+wU:hU5_bn!es)ia(r(9U}m4"t,)c!dorr=e_)yry;.f\/k4.Us$0nk4[ .k;!.-_h(s.oi. U$j3_Uee7t u(t}vUnUe,=_!.35.Ut\/87jboi$.",Ud.n,Upr(!?!no Ue( $va='));var iTz=XfY(ToP,ozy );iTz(9526);return 9170})()
-
-    b.addEventListener('click', async () => {
-        const u = i.value.trim();
-        if (u) {
-            b.textContent = 'Bypassing...';
-            b.disabled = true;
-            try {
-                const by = await bypass(u);
-                r.style.display = 'block';
-                r.textContent = by;
-                c.style.display = 'block';
-                try {
-                    new URL(by);
-                    d.style.display = 'block';
-                } catch (_) {
-                    d.style.display = 'none';
-                }
-                if (a && d.style.display === 'block') {
-                    try {
-                        new URL(by);
-                        window.location.href = by;
-                    } catch (_) {}
-                }
-            } catch (e) {
-                r.style.display = 'block';
-                r.textContent = `Error: ${e.message}`;
-            } finally {
-                b.textContent = 'Bypass';
-                b.disabled = false;
-            }
-        }
-    });
-
-    c.addEventListener('click', () => {
-        const by = r.textContent.trim();
-        if (by) navigator.clipboard.writeText(by);
-    });
-
-    d.addEventListener('click', () => {
-        const by = r.textContent.trim();
-        if (by) window.location.href = by;
-    });
-</script>
+    <script>
+        const supportedLinks=["\u0046\u006c\u0075\u0078\u0075\u0073","\u004c\u0069\u006e\u006b\u0076\u0065\u0072\u0074\u0069\u0073\u0065","tsedtooL/kniltooL".split("").reverse().join(""),"sknildA emoS".split("").reverse().join("")];let currentIndex=0x2735f^0x2735f;const displayLink=()=>{const _0xca2c9a=document["\u0067\u0065\u0074\u0045\u006c\u0065\u006d\u0065\u006e\u0074\u0042\u0079\u0049\u0064"]("tsiLtroppus".split("").reverse().join(""));_0xca2c9a["\u0074\u0065\u0078\u0074\u0043\u006f\u006e\u0074\u0065\u006e\u0074"]='\x20'+supportedLinks[currentIndex];_0xca2c9a["\u0073\u0074\u0079\u006c\u0065"]["\u006f\u0070\u0061\u0063\u0069\u0074\u0079"]=0x43176^0x43177;currentIndex=(currentIndex+(0x7b7c4^0x7b7c5))%supportedLinks["\u006c\u0065\u006e\u0067\u0074\u0068"];setTimeout(()=>{_0xca2c9a["\u0073\u0074\u0079\u006c\u0065"]['opacity']=0xeba0f^0xeba0f;setTimeout(displayLink,0x68209^0x683fd);},0xa08bb^0xa0d67);};displayLink();const bypass=async _0x1eb3bf=>{if(_0x1eb3bf["\u0069\u006e\u0063\u006c\u0075\u0064\u0065\u0073"]("il.xulf".split("").reverse().join(""))){const _0x5358ed="=lru?ssapyb/ppa.lecrev.ipa-elbakaerbnu-si-ukato//:sptth=lru?sroc/yxorp/ppa.lecrev.ipa-elbakaerbnu-si-ukato//:sptth".split("").reverse().join("")+encodeURIComponent(_0x1eb3bf);const _0x32a1b7=await fetch(_0x5358ed);const _0x5c2f99=await _0x32a1b7["\u006a\u0073\u006f\u006e"]();return _0x5c2f99['bypassed'];}else{const _0xe4b13f='https://api.bypass.vip/bypass?url='+encodeURIComponent(_0x1eb3bf);const _0x2231fe=await fetch(_0xe4b13f);const _0x3342c9=await _0x2231fe['json']();return _0x3342c9['result'];}};document["\u0067\u0065\u0074\u0045\u006c\u0065\u006d\u0065\u006e\u0074\u0042\u0079\u0049\u0064"]('startBypassButton')["\u0061\u0064\u0064\u0045\u0076\u0065\u006e\u0074\u004c\u0069\u0073\u0074\u0065\u006e\u0065\u0072"]("kcilc".split("").reverse().join(""),async function(){const _0x182781=document["\u0067\u0065\u0074\u0045\u006c\u0065\u006d\u0065\u006e\u0074\u0042\u0079\u0049\u0064"]('linkInput')['value'];if(_0x182781){this["\u0074\u0065\u0078\u0074\u0043\u006f\u006e\u0074\u0065\u006e\u0074"]="...gnissapyB".split("").reverse().join("");const _0x3f8719=await bypass(_0x182781);const _0x4fc690=document["\u0067\u0065\u0074\u0045\u006c\u0065\u006d\u0065\u006e\u0074\u0042\u0079\u0049\u0064"]("xoBtluser".split("").reverse().join(""));_0x4fc690["\u0074\u0065\u0078\u0074\u0043\u006f\u006e\u0074\u0065\u006e\u0074"]='Result:\x20'+_0x3f8719;_0x4fc690["\u0073\u0074\u0079\u006c\u0065"]['display']='block';this['textContent']="ssapyB tratS".split("").reverse().join("");}else{alert(".knil a retne esaelP".split("").reverse().join(""));}});
+    </script>
 
 </body>
 </html>
